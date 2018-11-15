@@ -26,6 +26,7 @@ var bump        = require('gulp-bump');
 var wrapUmd     = require("gulp-wrap-umd");
 var awspublish  = require('gulp-awspublish');
 var gulpTemplate = require('gulp-template');
+var minify = require('gulp-minify');
 
 // custom builder_helper stripper to remove builder helper functions
 var stripper = require("./gulp/gulp-stripper");
@@ -66,10 +67,10 @@ var paths = {
 
             // fields
             "src/js/fields/basic/TextField.js",
-            "src/js/fields/basic/TextAreaField.js",
-            "src/js/fields/basic/FileField.js",
+            //"src/js/fields/basic/TextAreaField.js",
+            //"src/js/fields/basic/FileField.js",
             "src/js/fields/basic/NumberField.js",
-            "src/js/fields/basic/ArrayField.js",
+            //"src/js/fields/basic/ArrayField.js",
             "src/js/fields/basic/ObjectField.js",
             "src/js/fields/basic/AnyField.js",
             "src/js/fields/basic/HiddenField.js",
@@ -80,7 +81,7 @@ var paths = {
             "src/js/fields/list/SelectField.js",
             "src/js/fields/list/ChooserField.js",
 
-            "src/js/fields/advanced/AddressField.js",
+           /* "src/js/fields/advanced/AddressField.js",
             "src/js/fields/advanced/CKEditorField.js",
             "src/js/fields/advanced/ColorField.js",
             "src/js/fields/advanced/ColorPickerField.js",
@@ -116,51 +117,51 @@ var paths = {
             "src/js/fields/advanced/UploadField.js",
             "src/js/fields/advanced/UpperCaseField.js",
             "src/js/fields/advanced/URLField.js",
-            "src/js/fields/advanced/ZipcodeField.js",
+            "src/js/fields/advanced/ZipcodeField.js",*/
 
             // base view
             "src/js/views/base.js",
 
             // i18n
-            "src/js/messages/i18n/cs_CZ.js",
-            "src/js/messages/i18n/de_AT.js",
-            "src/js/messages/i18n/de_DE.js",
-            "src/js/messages/i18n/el_GR.js",
-            "src/js/messages/i18n/es_ES.js",
-            "src/js/messages/i18n/fi_FI.js",
-            "src/js/messages/i18n/fr_FR.js",
-            "src/js/messages/i18n/hr_HR.js",
-            "src/js/messages/i18n/it_IT.js",
-            "src/js/messages/i18n/ja_JP.js",
-            "src/js/messages/i18n/nb_NO.js",
-            "src/js/messages/i18n/nl_BE.js",
-            "src/js/messages/i18n/pl_PL.js",
-            "src/js/messages/i18n/pt_BR.js",
-            "src/js/messages/i18n/sv_SE.js",
-            "src/js/messages/i18n/zh_CN.js"
+            //"src/js/messages/i18n/cs_CZ.js",
+            //"src/js/messages/i18n/de_AT.js",
+            //"src/js/messages/i18n/de_DE.js",
+            //"src/js/messages/i18n/el_GR.js",
+            //"src/js/messages/i18n/es_ES.js",
+            //"src/js/messages/i18n/fi_FI.js",
+            //"src/js/messages/i18n/fr_FR.js",
+            //"src/js/messages/i18n/hr_HR.js",
+            //"src/js/messages/i18n/it_IT.js",
+            //"src/js/messages/i18n/ja_JP.js",
+            //"src/js/messages/i18n/nb_NO.js",
+            //"src/js/messages/i18n/nl_BE.js",
+            //"src/js/messages/i18n/pl_PL.js",
+            //"src/js/messages/i18n/pt_BR.js",
+            //"src/js/messages/i18n/sv_SE.js",
+            //"src/js/messages/i18n/zh_CN.js"
         ],
         all_views: [
-            "src/js/views/web.js",
+            /*"src/js/views/web.js",
             "src/js/views/jqueryui.js",
             "src/js/views/jquerymobile.js",
-            "src/js/views/bootstrap.js"
+            "src/js/views/bootstrap.js"*/
         ],
         web: [
-            "build/tmp/templates-web.js",
+           /* "build/tmp/templates-web.js",
             "build/tmp/scripts-core.js",
-            "src/js/views/web.js"
+            "src/js/views/web.js"*/
         ],
         jqueryui: [
-            "build/tmp/templates-jqueryui.js",
+           /* "build/tmp/templates-jqueryui.js",
             "build/tmp/scripts-core.js",
             "src/js/views/web.js",
-            "src/js/views/jqueryui.js"
+            "src/js/views/jqueryui.js"*/
         ],
         jquerymobile: [
-            "build/tmp/templates-jquerymobile.js",
+            /*"build/tmp/templates-jquerymobile.js",
             "build/tmp/scripts-core.js",
             "src/js/views/web.js",
-            "src/js/views/jquerymobile.js"
+            "src/js/views/jquerymobile.js"*/
         ],
         bootstrap: [
             "build/tmp/templates-bootstrap.js",
@@ -265,7 +266,7 @@ gulp.task("build-templates", function(cb)
     return es.concat(
 
         // web
-        gulp.src(paths.templates["web"])
+       /* gulp.src(paths.templates["web"])
             .pipe(handlebars({ handlebars: require('handlebars') }))
             .pipe(wrap('Handlebars.template(<%= contents %>)'))
             .pipe(declare({
@@ -274,7 +275,7 @@ gulp.task("build-templates", function(cb)
                 noRedeclare: true
             }))
             .pipe(concat('templates-web.js'))
-            .pipe(gulp.dest('build/tmp/')),
+            .pipe(gulp.dest('build/tmp/')),*/
 
         // bootstrap
         gulp.src(paths.templates["bootstrap"])
@@ -289,7 +290,7 @@ gulp.task("build-templates", function(cb)
             .pipe(gulp.dest('build/tmp/')),
 
         // jqueryui
-        gulp.src(paths.templates["jqueryui"])
+        /*gulp.src(paths.templates["jqueryui"])
             .pipe(handlebars({ handlebars: require('handlebars') }))
             .pipe(wrap('Handlebars.template(<%= contents %>)'))
             .pipe(declare({
@@ -310,7 +311,7 @@ gulp.task("build-templates", function(cb)
                 noRedeclare: true
             }))
             .pipe(concat('templates-jquerymobile.js'))
-            .pipe(gulp.dest('build/tmp/'))
+            .pipe(gulp.dest('build/tmp/'))*/
 
     ).pipe(es.wait(function() {
         //console.log("build-templates complete");
